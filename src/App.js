@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { decrement, increment } from "./redux/reducers/cartReducer";
 import Axios from "axios";
 import Product from "./Product";
 
 export default function App() {
-  // const cart = useSelector((state) => state);
+  const cart = useSelector((state) => state.cart.value);
+  const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
   useEffect(() => {
     Axios.get("https://fakestoreapi.com/products").then((res) => {
@@ -24,6 +26,7 @@ export default function App() {
               ))}
             </div>
           </div>
+          {console.log(cart)}
         </section>
       )}
     </>
